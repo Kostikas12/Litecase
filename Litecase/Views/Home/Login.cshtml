@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div class="text-center" style="margin-bottom:30px">
+    <h4><strong>Выполните вход</strong></h4>
+</div>
+
+@if (ViewBag.mailregistered != null)
+{
+    <div class="text-center alert alert-success">
+        <h4>Пользователь с почтой: @ViewBag.mailregistered - зарегистрирован!</h4>
+    </div>
+}
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-center alert alert-warning">
+        <h4>@ViewBag.ErrorMessage</h4>
+    </div>
+}
+
+<div>
+    <table align="center">
+        <tr>
+            <th>
+                @using (Html.BeginForm("EnterLogin", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h5>Электронная почта:</h5>
+                            @if(ViewBag.mail == null)
+                            {
+                                <input class="form-control" type="text" name="mail" />
+                            }
+                            else
+                            {
+                                <input class="form-control" type="text" name="mail" value="@ViewBag.mail" /> 
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h5>Пароль:</h5>
+                            <input class="form-control" type="password" name="password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn" value="Вход" />
+                        </div>
+                    </div>
+                }
+            </th>
+        </tr>
+    </table>
+</div>
